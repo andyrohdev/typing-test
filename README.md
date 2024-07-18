@@ -1,5 +1,5 @@
 # typingtest-project
-This is a little side project! Here I will be experimenting and testing my Java knowledge.
+This is a little side project! FULL STACK Application
 
 # Use Cases:
 1. As a user of the system I need to be able to access a main menu.
@@ -18,9 +18,9 @@ This is a little side project! Here I will be experimenting and testing my Java 
     1. Case sensitive
     2. Can find the error on the LETTER. Not at the end of the word.
 7. A test has a time limit.
-    1. Easy has 30 seconds.
-    2. Medium has 15 seconds.
-    3. Hard has 8 seconds.
+    1. Easy has 15 seconds.
+    2. Medium has 20 seconds.
+    3. Hard has 30 seconds.
 8. A test has a combo system.
     1. 0 correct words has a 1x multiplier. Unlimited time.
     2. 3 correct words in a row has a 2x multiplier. 5 second window.
@@ -36,7 +36,13 @@ This is a little side project! Here I will be experimenting and testing my Java 
     1. They can view details of their test here.
     2. They can also return back to the main menu.
 11. OPTIONAL: Instead of quotes, use action words to dictate the action in a story game.
-
+12. Leaderboard
+    1. A user can view a leaderboard that has a database's scores.
+    2. They are sorted based on 3 filters.
+        1. Easy
+        2. Medium
+        3. Hard
+    3. The scores are ordered from Highest Score for each difficulty.
 
 
 
