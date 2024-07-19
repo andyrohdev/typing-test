@@ -1,0 +1,31 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.quote {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.quote span {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.quote .correct {
+    color: green;
+}
+
+.quote .incorrect {
+    color: red;
+}
+
+.quote .current {
+    text-decoration: underline;
+}
+
+.stats p {
+    display: inline-block;
+    margin: 0 15px;
+}

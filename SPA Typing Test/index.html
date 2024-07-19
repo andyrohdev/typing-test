@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="main-menu" class="container text-center mt-5">
+        <h1 class="mb-4">Typing Test</h1>
+        <button id="start-test" class="btn btn-primary">Start Test</button>
+    </div>
+
+    <div id="typing-test" class="container mt-5" style="display: none;">
+        <div class="row">
+            <div class="col-12">
+                <div id="quote" class="quote"></div>
+                <input type="text" id="input" class="form-control mt-3">
+                <div class="stats mt-3">
+                    <p>Time: <span id="time">30</span>s</p>
+                    <p>WPM: <span id="wpm">0</span></p>
+                    <p>Accuracy: <span id="accuracy">100</span>%</p>
+                </div>
+                <button id="reset-test" class="btn btn-warning mt-3">Reset</button>
+                <button id="back-menu" class="btn btn-secondary mt-3">Back to Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="results-menu" class="container text-center mt-5" style="display: none;">
+        <h1 class="mb-4">Test Results</h1>
+        <p>WPM: <span id="results-wpm"></span></p>
+        <p>Accuracy: <span id="results-accuracy"></span>%</p>
+        <div id="previous-results" class="mt-3"></div>
+        <button id="retake-same" class="btn btn-primary mt-3">Retake Same Test</button>
+        <button id="retake-new" class="btn btn-primary mt-3">Retake New Test</button>
+        <button id="back-menu-results" class="btn btn-secondary mt-3">Back to Menu</button>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
