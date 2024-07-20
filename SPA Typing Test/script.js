@@ -170,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
             wordsTyped++;
+            updateStats(); // Update stats when word is completed
         }
     }
 
@@ -179,11 +180,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const wpm = (wordsTyped / (elapsedTime / 60));
         wpmElement.textContent = Math.round(wpm);
 
-        const errors = totalWords - correctWords;
+        const errors = wordsTyped - correctWords;
         const accuracy = (wordsTyped === 0) ? 100 : ((wordsTyped - errors) / wordsTyped) * 100;
         accuracyElement.textContent = Math.max(0, Math.round(accuracy)); // Ensure accuracy doesn't go below 0
-        
-        
     }
 
     // End test function
@@ -228,14 +227,13 @@ document.addEventListener("DOMContentLoaded", () => {
     inputElement.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             event.preventDefault(); // Prevent default Enter key action (e.g., form submission)
-            endTest();
+
+            if (!started) {
+                accuracyElement.textContent = 0;
+                endTest();
+            } else {
+                endTest();
+            }
         }
-
-        if (!started && event.key === 'Enter') {
-            accuracyElement.textContent = 0;
-            endTest();
-        }
-
-
     });
 });
