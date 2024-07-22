@@ -143,14 +143,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const wordElements = quoteElement.querySelectorAll('span');
         const currentInput = inputElement.value;
         const currentWord = wordElements[currentWordIndex].textContent;
-
+    
         totalWords = wordElements.length;
-
+    
         if (!started) {
             started = true;
             timer = setInterval(updateTime, 1000);
         }
-
+    
         if (currentInput.trim() === currentWord) {
             wordElements[currentWordIndex].classList.add('correct');
             wordElements[currentWordIndex].classList.remove('incorrect');
@@ -158,21 +158,27 @@ document.addEventListener("DOMContentLoaded", () => {
             wordElements[currentWordIndex].classList.add('incorrect');
             wordElements[currentWordIndex].classList.remove('correct');
         }
-
+    
         if (currentInput.endsWith(' ')) {
             if (currentInput.trim() === currentWord) {
                 correctWords++;
                 currentWordIndex++;
                 inputElement.value = "";
                 highlightCurrentWord();
+    
                 if (currentWordIndex === wordElements.length) {
-                    endTest(); // Automatically end test when all words are typed
+                    endTest();
                 }
             }
             wordsTyped++;
             updateStats(); // Update stats when word is completed
+        } else if (currentWordIndex === wordElements.length - 1 && currentInput.trim() === currentWord) {
+            // Handle the last word without requiring a space
+            correctWords++;
+            endTest();
         }
     }
+    
 
     // Update stats function
     function updateStats() {
@@ -222,6 +228,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     inputElement.addEventListener('input', checkWord);
-
-    // Remove the Enter key listener
 });
