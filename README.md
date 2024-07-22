@@ -9,29 +9,29 @@ LinkedIn: andyrohdev
 ### User Stories: **(UPDATED)**
 1. Login and Register Page
 2. Main Menu which has multiple choices.
-		1. Play
-			1. 3 Game Modes
-				1. Standard One Quote **DONE**
-					1. This game mode tests how fast you can type ONE quote.
-				2. Timed Chained Quotes
-					1. This game mode chains multiple quotes and test your ability on how far you can get within the time limit. (30 seconds)
-				3. Words
-					1. This game mode only gives words. Test how many words you can get within the time limit.
-					2. There will be 5 words max displayed at a time.
-					3. 2 previous words that the user typed
-					4. And 2 words that are up and coming.
-					5. The two words on either side of the current word are greyed out.
-					6. This test has a unique mechanic called COMBOS
-						1. The combo will go up for how many words you get correct in a row.
-						2. The score calculation will be different for this game mode.
-						3. The combo dictates the score multiplier of the points you earn with a certain combo.
-							1. 0 correct words has a 1x multiplier. Unlimited time.
-						    2. 3 correct words in a row has a 2x multiplier. 5 second window.
-						    3. 7 correct words in a row has a 3x multiplier. 3 second window.
-						    4. 15 correct words in a row has a 4x multiplier. 2 second window.
-						    5. 25 correct words in a row has a MAX (5x multiplier) 1 second window.
-						    6. The multiplier system rewards points based on the multiplication number.
-						    7. Combo breaks when a user spells a word wrong OR when they take too long.
+	1. Play
+		1. 3 Game Modes
+			1. Standard One Quote **DONE**
+				1. This game mode tests how fast you can type ONE quote.
+			2. Timed Chained Quotes
+				1. This game mode chains multiple quotes and test your ability on how far you can get within the time limit. (30 seconds)
+			3. Words
+				1. This game mode only gives words. Test how many words you can get within the time limit.
+				2. There will be 5 words max displayed at a time.
+				3. 2 previous words that the user typed
+				4. And 2 words that are up and coming.
+				5. The two words on either side of the current word are greyed out.
+       				6. This test has a unique mechanic called COMBOS
+					1. The combo will go up for how many words you get correct in a row.
+					2. The score calculation will be different for this game mode.
+					3. The combo dictates the score multiplier of the points you earn with a certain combo.
+						1. 0 correct words has a 1x multiplier. Unlimited time.
+						2. 3 correct words in a row has a 2x multiplier. 5 second window.
+						3. 7 correct words in a row has a 3x multiplier. 3 second window.
+						4. 15 correct words in a row has a 4x multiplier. 2 second window.
+						5. 25 correct words in a row has a MAX (5x multiplier) 1 second window.
+						6. The multiplier system rewards points based on the multiplication number.
+						7. Combo breaks when a user spells a word wrong OR when they take too long.
 		2. View Stats
 			1. User's average WPM, accuracy, best WPM, and specific test scores.
 			2. The user can select a test to view specific stats.
