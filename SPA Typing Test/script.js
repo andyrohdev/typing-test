@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 inputElement.value = "";
                 highlightCurrentWord();
                 if (currentWordIndex === wordElements.length) {
-                    endTest();
+                    endTest(); // Automatically end test when all words are typed
                 }
             }
             wordsTyped++;
@@ -223,17 +223,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     inputElement.addEventListener('input', checkWord);
 
-    // Add event listener for Enter key
-    inputElement.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault(); // Prevent default Enter key action (e.g., form submission)
-
-            if (!started) {
-                accuracyElement.textContent = 0;
-                endTest();
-            } else {
-                endTest();
-            }
-        }
-    });
+    // Remove the Enter key listener
 });
