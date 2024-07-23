@@ -1,31 +1,71 @@
 /* styles.css */
-body {
-    font-family: Arial, sans-serif;
+
+/* General container styles */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.quote {
-    font-size: 1.5em;
+/* Main menu and gamemodes menu */
+#main-menu, #gamemodes-menu, #typing-test, #results-menu {
     text-align: center;
 }
 
-.quote span {
-    display: inline-block;
-    margin: 0 5px;
+/* Button styling */
+.btn {
+    display: block;
+    width: 80%; /* Adjust the width to make buttons more narrow */
+    margin: 10px auto; /* Center the buttons horizontally and add vertical margin */
+    padding: 12px; /* Adjust padding to make buttons slightly smaller */
+    font-size: 18px;
+    transition: transform 0.2s ease-in-out; /* Smooth transition for hover effect */
 }
 
-.quote .correct {
-    color: green;
+/* Button styling specific to menu buttons */
+#main-menu .btn, #gamemodes-menu .btn {
+    font-size: 20px;
 }
 
-.quote .incorrect {
-    color: red;
+/* Hover effect */
+.btn:hover {
+    transform: scale(1.05); /* Slightly increase button size on hover */
 }
 
-.quote .current {
-    text-decoration: underline;
+/* Typing test styles */
+#quote {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#input {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.stats {
+    font-size: 18px;
+    margin-top: 20px;
 }
 
 .stats p {
-    display: inline-block;
-    margin: 0 15px;
+    margin: 5px 0;
+}
+
+/* Highlighted word styling */
+.current {
+    background-color: #ffff99;
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}
+
+/* Back to menu button */
+#back-menu, #back-menu-results {
+    margin-top: 20px;
 }

@@ -24,9 +24,14 @@ let previousQuote = "";
 
 document.addEventListener("DOMContentLoaded", () => {
     const mainMenu = document.getElementById("main-menu");
+    const gamemodesMenu = document.getElementById("gamemodes-menu");
     const typingTest = document.getElementById("typing-test");
     const resultsMenu = document.getElementById("results-menu");
-    const startButton = document.getElementById("start-test");
+    const playButton = document.getElementById("play-button");
+    const singleQuoteButton = document.getElementById("single-quote-button");
+    const multiQuoteButton = document.getElementById("multi-quote-button");
+    const wordRaceButton = document.getElementById("word-race-button");
+    const backToMainButton = document.getElementById("back-to-main");
     const resetButton = document.getElementById("reset-test");
     const backButton = document.getElementById("back-menu");
     const backButtonResults = document.getElementById("back-menu-results");
@@ -41,11 +46,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultsWPMElement = document.getElementById("results-wpm");
     const resultsAccuracyElement = document.getElementById("results-accuracy");
 
-    // Event listener for start button
-    startButton.addEventListener("click", () => {
+    // Event listener for play button
+    playButton.addEventListener("click", () => {
         mainMenu.style.display = "none";
+        gamemodesMenu.style.display = "block";
+    });
+
+    // Event listener for single quote button
+    singleQuoteButton.addEventListener("click", () => {
+        gamemodesMenu.style.display = "none";
         typingTest.style.display = "block";
         startTest();
+    });
+
+    // Event listener for multi-quote button
+    multiQuoteButton.addEventListener("click", () => {
+        // Placeholder for Multi-Quote
+        alert("Multi-Quote mode is not yet implemented.");
+    });
+
+    // Event listener for word race button
+    wordRaceButton.addEventListener("click", () => {
+        // Placeholder for Word Race
+        alert("Word Race mode is not yet implemented.");
+    });
+
+    // Event listener for back to main menu button
+    backToMainButton.addEventListener("click", () => {
+        gamemodesMenu.style.display = "none";
+        mainMenu.style.display = "block";
     });
 
     // Event listener for back button
@@ -104,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         timeLeft = 30;
         timeElement.textContent = timeLeft;
         wpmElement.textContent = "0.00";
-        accuracyElement.textContent = "100";
+        accuracyElement.textContent = "100.00";
         started = false;
         clearInterval(timer);
         highlightCurrentWord();
@@ -188,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const errors = wordsTyped - correctWords;
         const accuracy = (wordsTyped === 0) ? 100 : ((wordsTyped - errors) / wordsTyped) * 100;
-        accuracyElement.textContent = Math.max(0, Math.round(accuracy)); // Ensure accuracy doesn't go below 0
+        accuracyElement.textContent = accuracy.toFixed(2); // Display accuracy with 2 decimal places
     }
 
     // End test function
