@@ -103,8 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
         currentWordIndex = 0;
         timeLeft = 30;
         timeElement.textContent = timeLeft;
-        wpmElement.textContent = 0;
-        accuracyElement.textContent = 100;
+        wpmElement.textContent = "0.00";
+        accuracyElement.textContent = "100";
         started = false;
         clearInterval(timer);
         highlightCurrentWord();
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateStats() {
         const elapsedTime = Math.max(30 - timeLeft, 1); // Ensure at least 1 second to avoid division by zero
         const wpm = (wordsTyped / (elapsedTime / 60));
-        wpmElement.textContent = Math.round(wpm);
+        wpmElement.textContent = wpm.toFixed(2); // Display WPM with 2 decimal places
 
         const errors = wordsTyped - correctWords;
         const accuracy = (wordsTyped === 0) ? 100 : ((wordsTyped - errors) / wordsTyped) * 100;
