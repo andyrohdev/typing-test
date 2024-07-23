@@ -12,12 +12,12 @@ const QUOTES = [
 ];
 
 let currentQuote = "";
-let currentWordIndex = 0;
+let currentLetterIndex = 0;
 let timer;
 let timeLeft = 30;
-let wordsTyped = 0;
-let correctWords = 0;
-let totalWords = 0;
+let lettersTyped = 0;
+let correctLetters = 0;
+let totalLetters = 0;
 let started = false;
 let previousTestStats = null;
 let previousQuote = "";
@@ -27,11 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const gamemodesMenu = document.getElementById("gamemodes-menu");
     const typingTest = document.getElementById("typing-test");
     const resultsMenu = document.getElementById("results-menu");
-    const playButton = document.getElementById("play-button");
-    const singleQuoteButton = document.getElementById("single-quote-button");
-    const multiQuoteButton = document.getElementById("multi-quote-button");
-    const wordRaceButton = document.getElementById("word-race-button");
-    const backToMainButton = document.getElementById("back-to-main");
+    const startButton = document.getElementById("start-test");
     const resetButton = document.getElementById("reset-test");
     const backButton = document.getElementById("back-menu");
     const backButtonResults = document.getElementById("back-menu-results");
@@ -45,107 +41,106 @@ document.addEventListener("DOMContentLoaded", () => {
     const previousResultsElement = document.getElementById("previous-results");
     const resultsWPMElement = document.getElementById("results-wpm");
     const resultsAccuracyElement = document.getElementById("results-accuracy");
+    const leaderboardButton = document.getElementById("leaderboard");
+    const statsButton = document.getElementById("stats");
+    const backToMainButton = document.getElementById("back-to-main");
 
-    // Event listener for play button
-    playButton.addEventListener("click", () => {
+    if (!startButton || !resetButton || !backButton || !backButtonResults || !retakeSameButton || !retakeNewButton || !quoteElement || !inputElement || !timeElement || !wpmElement || !accuracyElement || !previousResultsElement || !resultsWPMElement || !resultsAccuracyElement || !leaderboardButton || !statsButton || !backToMainButton) {
+        console.error("One or more required elements are missing from the DOM.");
+        return;
+    }
+
+    startButton.addEventListener("click", () => {
         mainMenu.style.display = "none";
         gamemodesMenu.style.display = "block";
     });
 
-    // Event listener for single quote button
-    singleQuoteButton.addEventListener("click", () => {
-        gamemodesMenu.style.display = "none";
-        typingTest.style.display = "block";
-        startTest();
-    });
+    const singleQuoteButton = document.getElementById("single-quote");
+    if (singleQuoteButton) {
+        singleQuoteButton.addEventListener("click", () => {
+            gamemodesMenu.style.display = "none";
+            typingTest.style.display = "block";
+            startTest();
+        });
+    } else {
+        console.error("Element with ID 'single-quote' not found.");
+    }
 
-    // Event listener for multi-quote button
-    multiQuoteButton.addEventListener("click", () => {
-        // Placeholder for Multi-Quote
-        alert("Multi-Quote mode is not yet implemented.");
-    });
-
-    // Event listener for word race button
-    wordRaceButton.addEventListener("click", () => {
-        // Placeholder for Word Race
-        alert("Word Race mode is not yet implemented.");
-    });
-
-    // Event listener for back to main menu button
-    backToMainButton.addEventListener("click", () => {
-        gamemodesMenu.style.display = "none";
-        mainMenu.style.display = "block";
-    });
-
-    // Event listener for back button
     backButton.addEventListener("click", () => {
         typingTest.style.display = "none";
         resultsMenu.style.display = "none";
+        gamemodesMenu.style.display = "none";
         mainMenu.style.display = "block";
     });
 
-    // Event listener for back button on results page
     backButtonResults.addEventListener("click", () => {
         resultsMenu.style.display = "none";
         mainMenu.style.display = "block";
     });
 
-    // Event listener for retake same test button
     retakeSameButton.addEventListener("click", () => {
         typingTest.style.display = "block";
         resultsMenu.style.display = "none";
         startTest(true);
     });
 
-    // Event listener for retake new test button
     retakeNewButton.addEventListener("click", () => {
         typingTest.style.display = "block";
         resultsMenu.style.display = "none";
         startTest(false);
     });
 
-    // Event listener for reset button
     resetButton.addEventListener("click", () => {
         resetTest();
     });
 
-    // Start test function
+    leaderboardButton.addEventListener("click", () => {
+        alert('Leaderboard feature is not yet implemented.');
+        // Placeholder for leaderboard functionality
+    });
+
+    statsButton.addEventListener("click", () => {
+        alert('Stats feature is not yet implemented.');
+        // Placeholder for stats functionality
+    });
+
+    backToMainButton.addEventListener("click", () => {
+        gamemodesMenu.style.display = "none";
+        mainMenu.style.display = "block";
+    });
+
     function startTest(isRetakeSame = false) {
         if (isRetakeSame) {
-            // Ensure the new quote is not the same as the previous one
             currentQuote = previousQuote;
         } else {
-            // Ensure the new quote is not the same as the previous one
             do {
                 currentQuote = QUOTES[Math.floor(Math.random() * QUOTES.length)];
             } while (currentQuote === previousQuote);
         }
 
-        previousQuote = currentQuote; // Store the current quote
-        quoteElement.innerHTML = currentQuote.split(' ').map(word => `<span>${word}</span>`).join(' ');
+        previousQuote = currentQuote;
+        quoteElement.innerHTML = currentQuote.split('').map(char => `<span>${char}</span>`).join('');
         inputElement.value = "";
         inputElement.disabled = false;
         inputElement.focus();
-        wordsTyped = 0;
-        correctWords = 0;
-        totalWords = 0;
-        currentWordIndex = 0;
+        lettersTyped = 0;
+        correctLetters = 0;
+        totalLetters = 0;
+        currentLetterIndex = 0;
         timeLeft = 30;
         timeElement.textContent = timeLeft;
         wpmElement.textContent = "0.00";
         accuracyElement.textContent = "100.00";
         started = false;
         clearInterval(timer);
-        highlightCurrentWord();
+        highlightCurrentLetter();
     }
 
-    // Reset test function
     function resetTest() {
         clearInterval(timer);
         startTest(false);
     }
 
-    // Update time function
     function updateTime() {
         if (timeLeft > 0) {
             timeLeft--;
@@ -156,89 +151,81 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Highlight current word function
-    function highlightCurrentWord() {
-        const wordElements = quoteElement.querySelectorAll('span');
-        wordElements.forEach((element, index) => {
+    function highlightCurrentLetter() {
+        const letterElements = quoteElement.querySelectorAll('span');
+        letterElements.forEach((element, index) => {
             element.classList.remove('current');
-            if (index === currentWordIndex) {
+            if (index === currentLetterIndex) {
                 element.classList.add('current');
             }
         });
     }
 
-    // Check word function
-    function checkWord() {
-        const wordElements = quoteElement.querySelectorAll('span');
+    function checkLetter() {
+        const letterElements = quoteElement.querySelectorAll('span');
         const currentInput = inputElement.value;
-        const currentWord = wordElements[currentWordIndex].textContent;
-    
-        totalWords = wordElements.length;
-    
+
         if (!started) {
             started = true;
             timer = setInterval(updateTime, 1000);
         }
-    
-        if (currentInput.trim() === currentWord) {
-            wordElements[currentWordIndex].classList.add('correct');
-            wordElements[currentWordIndex].classList.remove('incorrect');
-        } else {
-            wordElements[currentWordIndex].classList.add('incorrect');
-            wordElements[currentWordIndex].classList.remove('correct');
-        }
-    
-        if (currentInput.endsWith(' ')) {
-            if (currentInput.trim() === currentWord) {
-                correctWords++;
-                currentWordIndex++;
-                inputElement.value = "";
-                highlightCurrentWord();
-    
-                if (currentWordIndex === wordElements.length) {
-                    endTest();
-                }
+
+        if (currentInput.length > 0 && currentInput[currentLetterIndex] === letterElements[currentLetterIndex].textContent) {
+            // Correct letter
+            letterElements[currentLetterIndex].classList.add('correct');
+            letterElements[currentLetterIndex].classList.remove('incorrect');
+            correctLetters++;
+            currentLetterIndex++;
+            if (currentLetterIndex === letterElements.length) {
+                endTest();
+            } else {
+                highlightCurrentLetter();
             }
-            wordsTyped++;
-            updateStats(); // Update stats when word is completed
-        } else if (currentWordIndex === wordElements.length - 1 && currentInput.trim() === currentWord) {
-            // Handle the last word without requiring a space
-            correctWords++;
-            endTest();
+        } else if (currentInput.length === 0 && currentLetterIndex > 0) {
+            // Handle backspace
+            letterElements[currentLetterIndex].classList.remove('correct');
+            letterElements[currentLetterIndex].classList.remove('incorrect');
+            currentLetterIndex--;
+            highlightCurrentLetter();
+        } else if (currentInput.length > 0) {
+            // Incorrect letter
+            letterElements[currentLetterIndex].classList.add('incorrect');
+            letterElements[currentLetterIndex].classList.remove('correct');
+        }
+
+        // Handle letter counting for WPM and accuracy
+        if (currentInput.length > 0 && currentLetterIndex <= letterElements.length - 1) {
+            lettersTyped++;
+            totalLetters = letterElements.length;
+            updateStats();
         }
     }
-    
 
-    // Update stats function
     function updateStats() {
-        const elapsedTime = Math.max(30 - timeLeft, 1); // Ensure at least 1 second to avoid division by zero
-        const wpm = (wordsTyped / (elapsedTime / 60));
-        wpmElement.textContent = wpm.toFixed(2); // Display WPM with 2 decimal places
+        const elapsedTime = Math.max(30 - timeLeft, 1); 
+        const wpm = (correctLetters / 5) / (elapsedTime / 60); 
+        wpmElement.textContent = (Math.round(wpm * 100) / 100).toFixed(2);
 
-        const errors = wordsTyped - correctWords;
-        const accuracy = (wordsTyped === 0) ? 100 : ((wordsTyped - errors) / wordsTyped) * 100;
-        accuracyElement.textContent = accuracy.toFixed(2); // Display accuracy with 2 decimal places
+        const errors = lettersTyped - correctLetters;
+        const accuracy = (lettersTyped === 0) ? 100 : ((lettersTyped - errors) / lettersTyped) * 100;
+        accuracyElement.textContent = (Math.max(0, accuracy)).toFixed(2); 
     }
 
-    // End test function
     function endTest() {
         clearInterval(timer);
         inputElement.disabled = true;
         showResults();
     }
 
-    // Show results function
     function showResults() {
         resultsWPMElement.textContent = wpmElement.textContent;
         resultsAccuracyElement.textContent = accuracyElement.textContent;
 
-        // Store current test stats
         const currentTestStats = {
             wpm: resultsWPMElement.textContent,
             accuracy: resultsAccuracyElement.textContent
         };
 
-        // If there are previous stats, display them
         if (previousTestStats) {
             previousResultsElement.innerHTML = `
                 <h3>Previous Test</h3>
@@ -246,15 +233,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p>Accuracy: ${previousTestStats.accuracy}%</p>
             `;
         } else {
-            previousResultsElement.innerHTML = ""; // Clear if no previous stats
+            previousResultsElement.innerHTML = "";
         }
 
-        // Update previousTestStats to current test stats
         previousTestStats = currentTestStats;
-
         typingTest.style.display = "none";
         resultsMenu.style.display = "block";
     }
 
-    inputElement.addEventListener('input', checkWord);
+    inputElement.addEventListener('input', checkLetter);
 });
