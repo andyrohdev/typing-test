@@ -8,12 +8,20 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="default-theme">
     <div id="main-menu" class="container text-center mt-5">
         <h1 class="mb-4">Typing Test</h1>
         <button id="start-test" class="btn btn-primary mb-3">Play</button>
         <button id="leaderboard" class="btn btn-secondary mb-3">Leaderboard</button>
         <button id="stats" class="btn btn-secondary mb-3">Stats</button>
+        <button id="themes-button" class="btn btn-secondary mb-3">Themes</button>
+    </div>
+
+    <div id="themes-menu" class="container text-center mt-5" style="display: none;">
+        <h1 class="mb-4">Select a Theme</h1>
+        <button id="default-button" class="btn btn-secondary mb-3">Default</button>
+        <button id="polar-night-button" class="btn btn-secondary mb-3">Polar Night</button>
+        <button id="back-to-main-from-themes" class="btn btn-secondary mb-3">Back to Main Menu</button>
     </div>
 
     <div id="gamemodes-menu" class="container text-center mt-5" style="display: none;">

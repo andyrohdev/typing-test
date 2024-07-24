@@ -12,18 +12,18 @@ const QUOTES = [
 ];
 
 let currentQuote = "";
-let currentLetterIndex = 0;
+let currentWordIndex = 0;
 let timer;
 let timeLeft = 30;
 let lettersTyped = 0;
 let correctLetters = 0;
 let totalLetters = 0;
 let started = false;
-let previousTestStats = null;
 let previousQuote = "";
 
 document.addEventListener("DOMContentLoaded", () => {
     const mainMenu = document.getElementById("main-menu");
+    const themesMenu = document.getElementById("themes-menu");
     const gamemodesMenu = document.getElementById("gamemodes-menu");
     const typingTest = document.getElementById("typing-test");
     const resultsMenu = document.getElementById("results-menu");
@@ -44,11 +44,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const leaderboardButton = document.getElementById("leaderboard");
     const statsButton = document.getElementById("stats");
     const backToMainButton = document.getElementById("back-to-main");
+    const themesButton = document.getElementById("themes-button");
+    const backToMainFromThemesButton = document.getElementById("back-to-main-from-themes");
+    const defaultButton = document.getElementById("default-button");
+    const polarNightButton = document.getElementById("polar-night-button");
 
-    if (!startButton || !resetButton || !backButton || !backButtonResults || !retakeSameButton || !retakeNewButton || !quoteElement || !inputElement || !timeElement || !wpmElement || !accuracyElement || !previousResultsElement || !resultsWPMElement || !resultsAccuracyElement || !leaderboardButton || !statsButton || !backToMainButton) {
+    if (!startButton || !resetButton || !backButton || !backButtonResults || !retakeSameButton || !retakeNewButton || !quoteElement || !inputElement || !timeElement || !wpmElement || !accuracyElement || !previousResultsElement || !resultsWPMElement || !resultsAccuracyElement || !leaderboardButton || !statsButton || !backToMainButton || !themesButton || !polarNightButton || !backToMainFromThemesButton) {
         console.error("One or more required elements are missing from the DOM.");
         return;
     }
+
+    defaultButton.addEventListener("click", () => {
+        document.body.classList.add('default-theme');
+        document.body.classList.remove('polar-night-theme');
+        themesMenu.style.display = "none";
+        mainMenu.style.display = "block";
+    });
+
+    polarNightButton.addEventListener("click", () => {
+        document.body.classList.add('polar-night-theme');
+        document.body.classList.remove('default-theme');
+        themesMenu.style.display = "none";
+        mainMenu.style.display = "block";
+    });
 
     startButton.addEventListener("click", () => {
         mainMenu.style.display = "none";
@@ -109,31 +127,44 @@ document.addEventListener("DOMContentLoaded", () => {
         mainMenu.style.display = "block";
     });
 
+    themesButton.addEventListener("click", () => {
+        mainMenu.style.display = "none";
+        themesMenu.style.display = "block";
+    });
+
+    backToMainFromThemesButton.addEventListener("click", () => {
+        themesMenu.style.display = "none";
+        mainMenu.style.display = "block";
+    });
+
     function startTest(isRetakeSame = false) {
-        if (isRetakeSame) {
+        if (isRetakeSame && previousQuote) {
             currentQuote = previousQuote;
         } else {
             do {
                 currentQuote = QUOTES[Math.floor(Math.random() * QUOTES.length)];
             } while (currentQuote === previousQuote);
         }
-
+    
         previousQuote = currentQuote;
-        quoteElement.innerHTML = currentQuote.split('').map(char => `<span>${char}</span>`).join('');
+        quoteElement.innerHTML = currentQuote.split(' ').map(word => `<span>${word}</span>`).join(' ');
         inputElement.value = "";
         inputElement.disabled = false;
         inputElement.focus();
         lettersTyped = 0;
         correctLetters = 0;
-        totalLetters = 0;
-        currentLetterIndex = 0;
+        totalLetters = currentQuote.replace(/ /g, '').length;
+        currentWordIndex = 0;
         timeLeft = 30;
         timeElement.textContent = timeLeft;
         wpmElement.textContent = "0.00";
         accuracyElement.textContent = "100.00";
         started = false;
         clearInterval(timer);
-        highlightCurrentLetter();
+        highlightCurrentWord();
+
+        // Clear previous results section
+        previousResultsElement.innerHTML = '';
     }
 
     function resetTest() {
@@ -151,18 +182,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function highlightCurrentLetter() {
-        const letterElements = quoteElement.querySelectorAll('span');
-        letterElements.forEach((element, index) => {
+    function highlightCurrentWord() {
+        const wordElements = quoteElement.querySelectorAll('span');
+        wordElements.forEach((element, index) => {
             element.classList.remove('current');
-            if (index === currentLetterIndex) {
+            if (index === currentWordIndex) {
                 element.classList.add('current');
             }
         });
     }
 
-    function checkLetter() {
-        const letterElements = quoteElement.querySelectorAll('span');
+    function checkWord() {
+        const wordElements = quoteElement.querySelectorAll('span');
         const currentInput = inputElement.value;
 
         if (!started) {
@@ -170,81 +201,79 @@ document.addEventListener("DOMContentLoaded", () => {
             timer = setInterval(updateTime, 1000);
         }
 
-        if (currentInput.length > 0 && currentInput[currentLetterIndex] === letterElements[currentLetterIndex].textContent) {
-            // Correct letter
-            letterElements[currentLetterIndex].classList.add('correct');
-            letterElements[currentLetterIndex].classList.remove('incorrect');
-            correctLetters++;
-            currentLetterIndex++;
-            if (currentLetterIndex === letterElements.length) {
-                endTest();
+        const currentWord = wordElements[currentWordIndex].textContent.trim();
+        const isLastWord = currentWordIndex === wordElements.length - 1;
+
+        if (currentInput.endsWith(' ')) {
+            if (currentInput.trim() === currentWord) {
+                // Correct word followed by space
+                wordElements[currentWordIndex].classList.add('correct');
+                wordElements[currentWordIndex].classList.remove('incorrect');
+                correctLetters += currentInput.trim().length;
+                lettersTyped += currentInput.trim().length;
+                currentWordIndex++;
+                inputElement.value = "";
+
+                if (currentWordIndex === wordElements.length) {
+                    endTest(); // End the test if it's the last word
+                } else {
+                    highlightCurrentWord();
+                }
             } else {
-                highlightCurrentLetter();
+                // Incorrect word followed by space
+                wordElements[currentWordIndex].classList.add('incorrect');
+                wordElements[currentWordIndex].classList.remove('correct');
+                lettersTyped += currentInput.trim().length;
+                inputElement.value = "";
             }
-        } else if (currentInput.length === 0 && currentLetterIndex > 0) {
-            // Handle backspace
-            letterElements[currentLetterIndex].classList.remove('correct');
-            letterElements[currentLetterIndex].classList.remove('incorrect');
-            currentLetterIndex--;
-            highlightCurrentLetter();
-        } else if (currentInput.endsWith(' ') && currentLetterIndex === letterElements.length) {
-            // Handle complete word entry
+        } else if (isLastWord && currentInput.trim() === currentWord) {
+            // Last word typed correctly without space
+            wordElements[currentWordIndex].classList.add('correct');
+            wordElements[currentWordIndex].classList.remove('incorrect');
+            correctLetters += currentInput.trim().length;
+            lettersTyped += currentInput.trim().length;
             inputElement.value = "";
-            currentLetterIndex = 0;
-            highlightCurrentLetter();
-        } else if (currentInput.length > 0) {
-            // Incorrect letter
-            letterElements[currentLetterIndex].classList.add('incorrect');
-            letterElements[currentLetterIndex].classList.remove('correct');
+            endTest(); // End the test immediately since it's the last word
         }
 
-        // Handle letter counting for WPM and accuracy
-        if (currentInput.length > 0 && currentLetterIndex <= letterElements.length - 1) {
-            lettersTyped++;
-            totalLetters = letterElements.length;
-            updateStats();
-        }
+        updateStats();
     }
 
     function updateStats() {
-        const elapsedTime = Math.max(30 - timeLeft, 1); 
-        const wpm = (correctLetters / 5) / (elapsedTime / 60); 
+        const elapsedTime = Math.max(30 - timeLeft, 1);
+        const wpm = (lettersTyped / 5) / (elapsedTime / 60);
         wpmElement.textContent = (Math.round(wpm * 100) / 100).toFixed(2);
 
         const errors = lettersTyped - correctLetters;
-        const accuracy = (lettersTyped === 0) ? 100 : ((lettersTyped - errors) / lettersTyped) * 100;
-        accuracyElement.textContent = (Math.max(0, accuracy)).toFixed(2); 
+        const accuracy = (lettersTyped === 0) ? 100 : (correctLetters / lettersTyped) * 100;
+        accuracyElement.textContent = (Math.round(accuracy * 100) / 100).toFixed(2);
     }
 
     function endTest() {
         clearInterval(timer);
         inputElement.disabled = true;
-        showResults();
-    }
-
-    function showResults() {
         resultsWPMElement.textContent = wpmElement.textContent;
         resultsAccuracyElement.textContent = accuracyElement.textContent;
-
-        const currentTestStats = {
+    
+        console.log('Current Test Results:', {
+            wpm: resultsWPMElement.textContent,
+            accuracy: resultsAccuracyElement.textContent
+        });
+    
+        // Update previous test stats with the current test stats after the test ends
+        previousTestStats = {
             wpm: resultsWPMElement.textContent,
             accuracy: resultsAccuracyElement.textContent
         };
+    
+        console.log("Updated PreviousTest, ", previousTestStats);
+    
+        // Do not display previous results on the results page
+        previousResultsElement.innerHTML = '';
 
-        if (previousTestStats) {
-            previousResultsElement.innerHTML = `
-                <h3>Previous Test</h3>
-                <p>WPM: ${previousTestStats.wpm}</p>
-                <p>Accuracy: ${previousTestStats.accuracy}%</p>
-            `;
-        } else {
-            previousResultsElement.innerHTML = "";
-        }
-
-        previousTestStats = currentTestStats;
         typingTest.style.display = "none";
         resultsMenu.style.display = "block";
     }
 
-    inputElement.addEventListener('input', checkLetter);
+    inputElement.addEventListener("input", checkWord);
 });
