@@ -187,6 +187,11 @@ document.addEventListener("DOMContentLoaded", () => {
             letterElements[currentLetterIndex].classList.remove('incorrect');
             currentLetterIndex--;
             highlightCurrentLetter();
+        } else if (currentInput.endsWith(' ') && currentLetterIndex === letterElements.length) {
+            // Handle complete word entry
+            inputElement.value = "";
+            currentLetterIndex = 0;
+            highlightCurrentLetter();
         } else if (currentInput.length > 0) {
             // Incorrect letter
             letterElements[currentLetterIndex].classList.add('incorrect');
