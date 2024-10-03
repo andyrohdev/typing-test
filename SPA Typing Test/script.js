@@ -41,35 +41,62 @@ document.addEventListener("DOMContentLoaded", () => {
     const previousResultsElement = document.getElementById("previous-results");
     const resultsWPMElement = document.getElementById("results-wpm");
     const resultsAccuracyElement = document.getElementById("results-accuracy");
-    const portfolioButton = document.getElementById("portfolio-button"); // New Portfolio button
+    const portfolioButton = document.getElementById("portfolio-button");
+    const githubButton = document.getElementById("github-button"); // New GitHub button
 
     const backToMainButton = document.getElementById("back-to-main");
     const themesButton = document.getElementById("themes-button");
     const backToMainFromThemesButton = document.getElementById("back-to-main-from-themes");
     const defaultButton = document.getElementById("default-button");
     const polarNightButton = document.getElementById("polar-night-button");
+    const darkModeButton = document.getElementById("dark-mode-button");
+    const highContrastButton = document.getElementById("high-contrast-button");
+    const solarizedLightButton = document.getElementById("solarized-light-button");
 
+    // Theme Selection Event Listeners
     defaultButton.addEventListener("click", () => {
-        document.body.classList.add('default-theme');
-        document.body.classList.remove('polar-night-theme');
-        themesMenu.style.display = "none";
-        mainMenu.style.display = "block";
+        setTheme('default-theme');
     });
 
     polarNightButton.addEventListener("click", () => {
-        document.body.classList.add('polar-night-theme');
-        document.body.classList.remove('default-theme');
+        setTheme('polar-night-theme');
+    });
+
+    darkModeButton.addEventListener("click", () => {
+        setTheme('dark-mode');
+    });
+
+    highContrastButton.addEventListener("click", () => {
+        setTheme('high-contrast');
+    });
+
+    solarizedLightButton.addEventListener("click", () => {
+        setTheme('solarized-light');
+    });
+
+    // Function to handle theme changes
+    function setTheme(theme) {
+        document.body.classList.remove('default-theme', 'polar-night-theme', 'dark-mode', 'high-contrast', 'solarized-light');
+        document.body.classList.add(theme);
         themesMenu.style.display = "none";
         mainMenu.style.display = "block";
+    }
+
+    // Redirect to Portfolio
+    portfolioButton.addEventListener("click", () => {
+        window.location.href = "https://andyrohdev.github.io/portfolio-website/";
     });
+
+    // Redirect to GitHub Repo
+    githubButton.addEventListener("click", () => {
+        window.location.href = "https://github.com/andyrohdev/typingtest-project"; // New GitHub repo redirection
+    });
+
+    // Game functionality below
 
     startButton.addEventListener("click", () => {
         mainMenu.style.display = "none";
         gamemodesMenu.style.display = "block";
-    });
-
-    portfolioButton.addEventListener("click", () => {
-        window.location.href = "https://andyrohdev.github.io/portfolio-website/"; // Redirect to portfolio
     });
 
     const singleQuoteButton = document.getElementById("single-quote");

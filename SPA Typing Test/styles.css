@@ -12,11 +12,11 @@
 /* Button styling */
 .btn {
     display: block;
-    width: 80%; /* Adjust the width to make buttons more narrow */
-    margin: 10px auto; /* Center the buttons horizontally and add vertical margin */
-    padding: 12px; /* Adjust padding to make buttons slightly smaller */
+    width: 80%;
+    margin: 10px auto;
+    padding: 12px;
     font-size: 18px;
-    transition: transform 0.2s ease-in-out; /* Smooth transition for hover effect */
+    transition: transform 0.2s ease-in-out;
 }
 
 /* Button styling specific to menu buttons */
@@ -26,7 +26,7 @@
 
 /* Hover effect */
 .btn:hover {
-    transform: scale(1.05); /* Slightly increase button size on hover */
+    transform: scale(1.05);
 }
 
 /* Typing test styles */
@@ -48,24 +48,6 @@
 
 .stats p {
     margin: 5px 0;
-}
-
-/* Highlighted word styling */
-.current {
-    background-color: #ffff99;
-}
-
-.correct {
-    color: green;
-}
-
-.incorrect {
-    color: red;
-}
-
-/* Back to menu button */
-#back-menu, #back-menu-results, #back-to-main, #back-to-main-from-themes {
-    margin-top: 20px;
 }
 
 /* Default theme */
@@ -91,12 +73,6 @@
     background-color: var(--secondary-color);
 }
 
-/* Ensure the 'Play' button stands out */
-.default-theme #start-test {
-    font-weight: bold;
-    border: 2px solid #0056b3; /* Darker blue border */
-}
-
 .default-theme .current {
     background-color: var(--highlight-color);
 }
@@ -111,12 +87,12 @@
 
 /* Polar Night theme */
 .polar-night-theme {
-    --background-color: #2E3440; /* Webpage background color */
-    --primary-color: #3B4252;    /* Button background color */
-    --secondary-color: #434C5E;  /* Button hover background color */
-    --highlight-color: #88C0D0;  /* Highlight color for current word */
-    --text-color: #ECEFF4;       /* Text color */
-    --error-color: #BF616A;      /* Color for incorrect words */
+    --background-color: #2E3440;
+    --primary-color: #3B4252;
+    --secondary-color: #434C5E;
+    --highlight-color: #88C0D0;
+    --text-color: #ECEFF4;
+    --error-color: #BF616A;
 }
 
 .polar-night-theme body {
@@ -133,12 +109,6 @@
     background-color: var(--secondary-color);
 }
 
-/* Ensure the 'Play' button stands out */
-.polar-night-theme #start-test {
-    font-weight: bold;
-    border: 2px solid #2E3440; /* Darker shade for the border */
-}
-
 .polar-night-theme .current {
     background-color: var(--highlight-color);
 }
@@ -148,5 +118,113 @@
 }
 
 .polar-night-theme .incorrect {
+    color: var(--error-color);
+}
+
+/* Dark Mode */
+.dark-mode {
+    --background-color: #1E1E1E;
+    --primary-color: #282828;
+    --secondary-color: #444444;
+    --highlight-color: #BB86FC;
+    --text-color: #E0E0E0;
+    --error-color: #CF6679;
+}
+
+.dark-mode body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.dark-mode .btn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.dark-mode .btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.dark-mode .current {
+    background-color: var(--highlight-color);
+}
+
+.dark-mode .correct {
+    color: var(--highlight-color);
+}
+
+.dark-mode .incorrect {
+    color: var(--error-color);
+}
+
+/* High Contrast Mode (refined) */
+.high-contrast {
+    --background-color: #000000;
+    --primary-color: #FFEE00;
+    --secondary-color: #FFC107;
+    --highlight-color: #00FF00;
+    --text-color: #FFFFFF;
+    --error-color: #FF4C4C;
+}
+
+.high-contrast body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.high-contrast .btn {
+    background-color: var(--primary-color);
+    color: #000000;
+}
+
+.high-contrast .btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.high-contrast .current {
+    background-color: var(--highlight-color);
+}
+
+.high-contrast .correct {
+    color: var(--highlight-color);
+}
+
+.high-contrast .incorrect {
+    color: var(--error-color);
+}
+
+/* Solarized Light Theme */
+.solarized-light {
+    --background-color: #FDF6E3;
+    --primary-color: #657B83;
+    --secondary-color: #93A1A1;
+    --highlight-color: #268BD2;
+    --text-color: #586E75;
+    --error-color: #DC322F;
+}
+
+.solarized-light body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.solarized-light .btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.solarized-light .btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.solarized-light .current {
+    background-color: var(--highlight-color);
+}
+
+.solarized-light .correct {
+    color: var(--highlight-color);
+}
+
+.solarized-light .incorrect {
     color: var(--error-color);
 }
