@@ -41,18 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const previousResultsElement = document.getElementById("previous-results");
     const resultsWPMElement = document.getElementById("results-wpm");
     const resultsAccuracyElement = document.getElementById("results-accuracy");
-    const leaderboardButton = document.getElementById("leaderboard");
-    const statsButton = document.getElementById("stats");
+    const portfolioButton = document.getElementById("portfolio-button"); // New Portfolio button
+
     const backToMainButton = document.getElementById("back-to-main");
     const themesButton = document.getElementById("themes-button");
     const backToMainFromThemesButton = document.getElementById("back-to-main-from-themes");
     const defaultButton = document.getElementById("default-button");
     const polarNightButton = document.getElementById("polar-night-button");
-
-    if (!startButton || !resetButton || !backButton || !backButtonResults || !retakeSameButton || !retakeNewButton || !quoteElement || !inputElement || !timeElement || !wpmElement || !accuracyElement || !previousResultsElement || !resultsWPMElement || !resultsAccuracyElement || !leaderboardButton || !statsButton || !backToMainButton || !themesButton || !polarNightButton || !backToMainFromThemesButton) {
-        console.error("One or more required elements are missing from the DOM.");
-        return;
-    }
 
     defaultButton.addEventListener("click", () => {
         document.body.classList.add('default-theme');
@@ -71,6 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
     startButton.addEventListener("click", () => {
         mainMenu.style.display = "none";
         gamemodesMenu.style.display = "block";
+    });
+
+    portfolioButton.addEventListener("click", () => {
+        window.location.href = "https://andyrohdev.github.io/portfolio-website/"; // Redirect to portfolio
     });
 
     const singleQuoteButton = document.getElementById("single-quote");
@@ -112,16 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTest();
     });
 
-    leaderboardButton.addEventListener("click", () => {
-        alert('Leaderboard feature is not yet implemented.');
-        // Placeholder for leaderboard functionality
-    });
-
-    statsButton.addEventListener("click", () => {
-        alert('Stats feature is not yet implemented.');
-        // Placeholder for stats functionality
-    });
-
     backToMainButton.addEventListener("click", () => {
         gamemodesMenu.style.display = "none";
         mainMenu.style.display = "block";
@@ -135,6 +124,14 @@ document.addEventListener("DOMContentLoaded", () => {
     backToMainFromThemesButton.addEventListener("click", () => {
         themesMenu.style.display = "none";
         mainMenu.style.display = "block";
+    });
+
+    // Track backspace as an error
+    inputElement.addEventListener("keydown", function (event) {
+        if (event.key === "Backspace") {
+            lettersTyped++;  // Count as an error when backspace is pressed
+            updateStats();   // Update stats to reflect the new accuracy
+        }
     });
 
     function startTest(isRetakeSame = false) {
@@ -206,7 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (currentInput.endsWith(' ')) {
             if (currentInput.trim() === currentWord) {
-                // Correct word followed by space
                 wordElements[currentWordIndex].classList.add('correct');
                 wordElements[currentWordIndex].classList.remove('incorrect');
                 correctLetters += currentInput.trim().length;
@@ -215,25 +211,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 inputElement.value = "";
 
                 if (currentWordIndex === wordElements.length) {
-                    endTest(); // End the test if it's the last word
+                    endTest(); 
                 } else {
                     highlightCurrentWord();
                 }
             } else {
-                // Incorrect word followed by space
                 wordElements[currentWordIndex].classList.add('incorrect');
                 wordElements[currentWordIndex].classList.remove('correct');
                 lettersTyped += currentInput.trim().length;
                 inputElement.value = "";
             }
         } else if (isLastWord && currentInput.trim() === currentWord) {
-            // Last word typed correctly without space
             wordElements[currentWordIndex].classList.add('correct');
             wordElements[currentWordIndex].classList.remove('incorrect');
             correctLetters += currentInput.trim().length;
             lettersTyped += currentInput.trim().length;
             inputElement.value = "";
-            endTest(); // End the test immediately since it's the last word
+            endTest(); 
         }
 
         updateStats();
@@ -254,21 +248,8 @@ document.addEventListener("DOMContentLoaded", () => {
         inputElement.disabled = true;
         resultsWPMElement.textContent = wpmElement.textContent;
         resultsAccuracyElement.textContent = accuracyElement.textContent;
-    
-        console.log('Current Test Results:', {
-            wpm: resultsWPMElement.textContent,
-            accuracy: resultsAccuracyElement.textContent
-        });
-    
-        // Update previous test stats with the current test stats after the test ends
-        previousTestStats = {
-            wpm: resultsWPMElement.textContent,
-            accuracy: resultsAccuracyElement.textContent
-        };
-    
-        console.log("Updated PreviousTest, ", previousTestStats);
-    
-        // Do not display previous results on the results page
+
+        // Clear previous results section
         previousResultsElement.innerHTML = '';
 
         typingTest.style.display = "none";
