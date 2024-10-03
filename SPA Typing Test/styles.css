@@ -1,9 +1,24 @@
 /* General container styles */
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: inherit; /* Inherit background from body */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    box-sizing: border-box; /* Ensure padding and border are included in width/height */
 }
+
+.container {
+    margin-top: 0; /* Remove the top margin */
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: inherit;
+}
+
+.container.mt-5 {
+    margin-top: 0 !important;
+}
+
 
 /* Main menu and gamemodes menu */
 #main-menu, #gamemodes-menu, #typing-test, #results-menu, #themes-menu {
