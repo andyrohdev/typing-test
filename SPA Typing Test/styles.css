@@ -11,7 +11,7 @@ html, body {
 .container {
     min-width: 100vw;
     min-height: 100vh;
-    background-color: inherit;
+    background-color: inherit; /* Background color inherited from the body */
 }
 
 /* Main menu and gamemodes menu */
@@ -22,9 +22,9 @@ html, body {
 /* Button styling */
 .btn {
     display: block;
-    width: 60%; /* Shortened buttons horizontally */
+    width: 40%; /* Make buttons horizontally shorter */
     margin: 10px auto;
-    padding: 10px;
+    padding: 12px; /* Keep padding size for overall button size */
     font-size: 18px;
     transition: transform 0.2s ease-in-out;
 }
@@ -34,8 +34,8 @@ html, body {
     font-size: 20px;
     text-align: center;
     margin-top: 10px;
-    width: 60%; /* Shortened text box */
-    margin: 0 auto; /* Centered text box */
+    width: 40%; /* Shortened text box horizontally */
+    margin: 0 auto; /* Center text box */
 }
 
 /* Button styling specific to menu buttons */
@@ -72,7 +72,7 @@ html, body {
     --highlight-color: #ffff99;
 }
 
-.default-theme html, .default-theme body {
+.default-theme html, .default-theme body, .default-theme .container {
     background-color: var(--background-color);
     color: var(--text-color);
 }
@@ -108,8 +108,8 @@ html, body {
     --error-color: #BF616A;
 }
 
-.polar-night-theme html, .polar-night-theme body {
-    background-color: var(--background-color);
+.polar-night-theme html, .polar-night-theme body, .polar-night-theme .container {
+    background-color: var(--background-color); /* Ensure background applies to both */
     color: var(--text-color);
 }
 
@@ -145,7 +145,7 @@ html, body {
 }
 
 .dark-mode html, .dark-mode body, .dark-mode .container {
-    background-color: var(--background-color);
+    background-color: var(--background-color); /* Ensure background applies to both */
     color: var(--text-color);
 }
 
@@ -185,8 +185,8 @@ html, body {
     --error-color: #FF4C4C;
 }
 
-.high-contrast html, .high-contrast body {
-    background-color: var(--background-color);
+.high-contrast html, .high-contrast body, .high-contrast .container {
+    background-color: var(--background-color); /* Ensure background applies to both */
     color: var(--text-color);
 }
 
@@ -211,7 +211,7 @@ html, body {
     color: var(--error-color);
 }
 
-/* Pastel Cutesy Theme (replacing Solarized Light) */
+/* New Pastel Cutesy Theme (replacing Solarized Light) */
 .pastel-cutesy {
     --background-color: #FCE4EC; /* Pastel pink */
     --primary-color: #F8BBD0; /* Light pink */
@@ -221,8 +221,8 @@ html, body {
     --error-color: #D32F2F; /* Bold red for errors */
 }
 
-.pastel-cutesy html, .pastel-cutesy body {
-    background-color: var(--background-color);
+.pastel-cutesy html, .pastel-cutesy body, .pastel-cutesy .container {
+    background-color: var(--background-color); /* Ensure background applies to both */
     color: var(--text-color);
 }
 
