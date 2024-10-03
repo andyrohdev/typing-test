@@ -4,7 +4,7 @@
 Welcome to the **Typing Test Project**! This project is a web-based application that allows users to test their typing speed and accuracy with various quotes and themes.
 For some background, this project was made during the inital Front-end unit during my time at Tech Elevator. Please look at this project as a showcase of growth.
 
-![Project Logo or Screenshot](https://via.placeholder.com/800x400.png?text=Project+Screenshot)  
+![Project Logo or Screenshot](https://res.cloudinary.com/dtwxjssaq/image/upload/v1727988787/image_qlfucy.png)
 *Screenshot of the Typing Test main menu*
 
 ---
@@ -75,7 +75,7 @@ To run this project locally, follow these steps:
 ## Screenshots & Videos
 
 ### Screenshots
-- ![Typing Test Gameplay](https://via.placeholder.com/800x400.png?text=Gameplay+Screenshot)  
+- ![Typing Test Gameplay](https://res.cloudinary.com/dtwxjssaq/image/upload/v1727988771/image_hbjydg.png)
   *Main game mode interface*
 
 ### Video Walkthrough
