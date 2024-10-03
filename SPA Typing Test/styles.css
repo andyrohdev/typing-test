@@ -9,7 +9,6 @@ html, body {
 }
 
 .container {
-    margin-top: 0; /* Remove the top margin */
     min-width: 100vw;
     min-height: 100vh;
     background-color: inherit;
@@ -28,7 +27,7 @@ html, body {
 /* Button styling */
 .btn {
     display: block;
-    width: 80%;
+    width: 70%; /* Make buttons shorter horizontally */
     margin: 10px auto;
     padding: 12px;
     font-size: 18px;
@@ -214,38 +213,38 @@ html, body {
     color: var(--error-color);
 }
 
-/* Solarized Light Theme */
-.solarized-light {
-    --background-color: #FDF6E3;
-    --primary-color: #657B83;
-    --secondary-color: #93A1A1;
-    --highlight-color: #268BD2;
-    --text-color: #586E75;
-    --error-color: #DC322F;
+/* New Pastel Cutesy Theme (replacing Solarized Light) */
+.pastel-cutesy {
+    --background-color: #FCE4EC; /* Pastel pink */
+    --primary-color: #F8BBD0; /* Light pink */
+    --secondary-color: #F48FB1; /* Pinkish red */
+    --highlight-color: #FFCDD2; /* Soft red for highlights */
+    --text-color: #880E4F; /* Dark reddish purple */
+    --error-color: #D32F2F; /* Bold red for errors */
 }
 
-.solarized-light html, .solarized-light body {
+.pastel-cutesy html, .pastel-cutesy body {
     background-color: var(--background-color);
     color: var(--text-color);
 }
 
-.solarized-light .btn {
+.pastel-cutesy .btn {
     background-color: var(--primary-color);
     color: var(--text-color);
 }
 
-.solarized-light .btn:hover {
+.pastel-cutesy .btn:hover {
     background-color: var(--secondary-color);
 }
 
-.solarized-light .current {
+.pastel-cutesy .current {
     background-color: var(--highlight-color);
 }
 
-.solarized-light .correct {
+.pastel-cutesy .correct {
     color: var(--highlight-color);
 }
 
-.solarized-light .incorrect {
+.pastel-cutesy .incorrect {
     color: var(--error-color);
 }

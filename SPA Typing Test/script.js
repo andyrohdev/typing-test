@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const polarNightButton = document.getElementById("polar-night-button");
     const darkModeButton = document.getElementById("dark-mode-button");
     const highContrastButton = document.getElementById("high-contrast-button");
-    const solarizedLightButton = document.getElementById("solarized-light-button");
+    const pastelButton = document.getElementById("pastel-button"); // New Pastel theme
 
     // Theme Selection Event Listeners
     defaultButton.addEventListener("click", () => {
@@ -70,13 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
         setTheme('high-contrast');
     });
 
-    solarizedLightButton.addEventListener("click", () => {
-        setTheme('solarized-light');
+    pastelButton.addEventListener("click", () => {
+        setTheme('pastel-cutesy'); // Updated for Pastel theme
     });
 
     // Function to handle theme changes
     function setTheme(theme) {
-        document.body.classList.remove('default-theme', 'polar-night-theme', 'dark-mode', 'high-contrast', 'solarized-light');
+        document.body.classList.remove('default-theme', 'polar-night-theme', 'dark-mode', 'high-contrast', 'pastel-cutesy');
         document.body.classList.add(theme);
         themesMenu.style.display = "none";
         mainMenu.style.display = "block";
