@@ -1,12 +1,26 @@
 /* General container styles */
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+    background-color: inherit; /* Continue ensuring container inherits the background */
+    min-height: 100vh; /* Ensure the container matches the height of the body */
 }
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh; /* Ensure the body covers the entire viewport height */
+}
+
 
 /* Main menu and gamemodes menu */
 #main-menu, #gamemodes-menu, #typing-test, #results-menu, #themes-menu {
     text-align: center;
+    background-color: inherit; /* Inherit from body */
 }
 
 /* Button styling */
@@ -59,7 +73,7 @@
     --highlight-color: #ffff99;
 }
 
-.default-theme body {
+.default-theme html, .default-theme body {
     background-color: var(--background-color);
     color: var(--text-color);
 }
@@ -95,7 +109,7 @@
     --error-color: #BF616A;
 }
 
-.polar-night-theme body {
+.polar-night-theme html, .polar-night-theme body {
     background-color: var(--background-color);
     color: var(--text-color);
 }
@@ -123,18 +137,26 @@
 
 /* Dark Mode */
 .dark-mode {
-    --background-color: #1E1E1E;
-    --primary-color: #282828;
+    --background-color: #121212;
+    --primary-color: #1F1F1F;
     --secondary-color: #444444;
     --highlight-color: #BB86FC;
     --text-color: #E0E0E0;
     --error-color: #CF6679;
 }
 
-.dark-mode body {
+/* Targeting both html and body for background */
+.dark-mode html, .dark-mode body {
     background-color: var(--background-color);
     color: var(--text-color);
+    height: 100%; /* Ensure the background color covers the entire height */
 }
+
+.dark-mode .container {
+    background-color: var(--primary-color); /* Ensure container matches the theme */
+    min-height: 100vh; /* Make sure the container takes the full viewport height */
+}
+
 
 .dark-mode .btn {
     background-color: var(--primary-color);
@@ -157,6 +179,11 @@
     color: var(--error-color);
 }
 
+/* Ensure title and "by Andy Roh" stand out in dark mode */
+.dark-mode h1, .dark-mode h5 {
+    color: #ffffff;
+}
+
 /* High Contrast Mode (refined) */
 .high-contrast {
     --background-color: #000000;
@@ -167,9 +194,13 @@
     --error-color: #FF4C4C;
 }
 
-.high-contrast body {
+.high-contrast html, .high-contrast body {
     background-color: var(--background-color);
     color: var(--text-color);
+}
+
+.high-contrast .container {
+    background-color: var(--primary-color); /* Ensure container is styled */
 }
 
 .high-contrast .btn {
@@ -203,9 +234,13 @@
     --error-color: #DC322F;
 }
 
-.solarized-light body {
+.solarized-light html, .solarized-light body {
     background-color: var(--background-color);
     color: var(--text-color);
+}
+
+.solarized-light .container {
+    background-color: var(--primary-color); /* Ensure container is styled */
 }
 
 .solarized-light .btn {
