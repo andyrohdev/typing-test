@@ -14,11 +14,6 @@ html, body {
     background-color: inherit;
 }
 
-.container.mt-5 {
-    margin-top: 0 !important;
-}
-
-
 /* Main menu and gamemodes menu */
 #main-menu, #gamemodes-menu, #typing-test, #results-menu, #themes-menu {
     text-align: center;
@@ -27,16 +22,25 @@ html, body {
 /* Button styling */
 .btn {
     display: block;
-    width: 70%; /* Make buttons shorter horizontally */
+    width: 60%; /* Shortened buttons horizontally */
     margin: 10px auto;
-    padding: 12px;
+    padding: 10px;
     font-size: 18px;
     transition: transform 0.2s ease-in-out;
 }
 
+/* Text box styling */
+#input {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+    width: 60%; /* Shortened text box */
+    margin: 0 auto; /* Centered text box */
+}
+
 /* Button styling specific to menu buttons */
 #main-menu .btn, #gamemodes-menu .btn, #themes-menu .btn {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 /* Hover effect */
@@ -48,12 +52,6 @@ html, body {
 #quote {
     font-size: 24px;
     margin-bottom: 20px;
-}
-
-#input {
-    font-size: 20px;
-    text-align: center;
-    margin-top: 10px;
 }
 
 .stats {
@@ -102,7 +100,7 @@ html, body {
 
 /* Polar Night theme */
 .polar-night-theme {
-    --background-color: #2E3440;
+    --background-color: #2E3440; /* Dark, calming blue */
     --primary-color: #3B4252;
     --secondary-color: #434C5E;
     --highlight-color: #88C0D0;
@@ -177,13 +175,13 @@ html, body {
     color: #ffffff;
 }
 
-/* High Contrast Mode (refined) */
+/* High Contrast Mode */
 .high-contrast {
-    --background-color: #000000;
-    --primary-color: #FFEE00;
+    --background-color: #000000; /* Jet black background */
+    --primary-color: #FFEE00; /* Bright yellow */
     --secondary-color: #FFC107;
     --highlight-color: #00FF00;
-    --text-color: #FFFFFF;
+    --text-color: #FFFFFF; /* High contrast white */
     --error-color: #FF4C4C;
 }
 
@@ -194,7 +192,7 @@ html, body {
 
 .high-contrast .btn {
     background-color: var(--primary-color);
-    color: #000000;
+    color: #000000; /* Black text for contrast */
 }
 
 .high-contrast .btn:hover {
@@ -213,7 +211,7 @@ html, body {
     color: var(--error-color);
 }
 
-/* New Pastel Cutesy Theme (replacing Solarized Light) */
+/* Pastel Cutesy Theme (replacing Solarized Light) */
 .pastel-cutesy {
     --background-color: #FCE4EC; /* Pastel pink */
     --primary-color: #F8BBD0; /* Light pink */
