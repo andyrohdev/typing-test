@@ -79,7 +79,10 @@ To run this project locally, follow these steps:
   *Main game mode interface*
 
 ### Video Walkthrough
-- [![Typing Test Video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)  
+
+
+
+- [![Typing Test Video](https://res.cloudinary.com/dtwxjssaq/image/upload/v1727988787/image_qlfucy.png)](https://res.cloudinary.com/dtwxjssaq/video/upload/v1727994323/typingtest-webdemo_a4gsam.mp4)) 
   *Link to your project walkthrough video*
 
 ---
