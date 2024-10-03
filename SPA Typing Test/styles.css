@@ -1,26 +1,13 @@
 /* General container styles */
 .container {
-    background-color: inherit; /* Continue ensuring container inherits the background */
-    min-height: 100vh; /* Ensure the container matches the height of the body */
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: inherit; /* Inherit background from body */
 }
-
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    min-height: 100vh; /* Ensure the body covers the entire viewport height */
-}
-
 
 /* Main menu and gamemodes menu */
 #main-menu, #gamemodes-menu, #typing-test, #results-menu, #themes-menu {
     text-align: center;
-    background-color: inherit; /* Inherit from body */
 }
 
 /* Button styling */
@@ -145,18 +132,10 @@ body {
     --error-color: #CF6679;
 }
 
-/* Targeting both html and body for background */
-.dark-mode html, .dark-mode body {
+.dark-mode html, .dark-mode body, .dark-mode .container {
     background-color: var(--background-color);
     color: var(--text-color);
-    height: 100%; /* Ensure the background color covers the entire height */
 }
-
-.dark-mode .container {
-    background-color: var(--primary-color); /* Ensure container matches the theme */
-    min-height: 100vh; /* Make sure the container takes the full viewport height */
-}
-
 
 .dark-mode .btn {
     background-color: var(--primary-color);
@@ -199,10 +178,6 @@ body {
     color: var(--text-color);
 }
 
-.high-contrast .container {
-    background-color: var(--primary-color); /* Ensure container is styled */
-}
-
 .high-contrast .btn {
     background-color: var(--primary-color);
     color: #000000;
@@ -237,10 +212,6 @@ body {
 .solarized-light html, .solarized-light body {
     background-color: var(--background-color);
     color: var(--text-color);
-}
-
-.solarized-light .container {
-    background-color: var(--primary-color); /* Ensure container is styled */
 }
 
 .solarized-light .btn {
