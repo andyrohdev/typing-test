@@ -80,10 +80,10 @@ To run this project locally, follow these steps:
 
 ### Video Walkthrough
 
+Click the image below to watch the full demo of the **Typing Test Project** in action!
 
-
-- [![Typing Test Video](https://res.cloudinary.com/dtwxjssaq/image/upload/v1727988787/image_qlfucy.png)](https://res.cloudinary.com/dtwxjssaq/video/upload/v1727994323/typingtest-webdemo_a4gsam.mp4)) 
-  *Link to your project walkthrough video*
+[![Typing Test Video](https://res.cloudinary.com/dtwxjssaq/image/upload/v1727988787/image_qlfucy.png)](https://res.cloudinary.com/dtwxjssaq/video/upload/v1727994323/typingtest-webdemo_a4gsam.mp4)
+*Link to project walkthrough video*
 
 ---
 
